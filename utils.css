@@ -1,0 +1,119 @@
+/* UTILITY */
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.no-drag img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.center {
+    border: 5px solid;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.app-title {
+    text-align: center;
+    transition: color .8s;
+    border: none !important;
+    margin-top: 16px;
+    color: white;
+}
+.app-title h4 {
+    transition: transform .2s;
+    padding: 12px;
+}
+.app-title h4:hover {
+    transform: scale(1.2);
+}
+.app-title h4:active {
+    transform: scale(0.8);
+}
+
+.menu-bar {
+    padding: 12px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.menu-bar p {
+    margin-right: 18px;
+}
+.menu-bar span {
+    font-weight: bold;
+    font-style: italic;
+}
+.menu-bar button {
+    color: black;
+    font-weight: 600;
+    background-color: gainsboro;
+    height: 24;
+}
+.menu-bar button:disabled {
+    background-color: rgb(49, 49, 49);
+}
+
+/* SPLASH SCREEN */
+.splash {
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 95%;
+    width: 95%;
+    transform: translate(-50%,-50%);    
+    background-color: rgba(0,0,0);
+    transition: all ease-in-out 600ms;
+    z-index: 1000;
+}
+.hidden {
+    transition: 0.5s;
+    display: none;
+}
+.splash-header {
+    height: 90%;
+    color: white;
+    font-family: consolas;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash img {
+    width: 120px;
+    height: 120px;
+    top: 45%;
+    left: 47%;
+    position: absolute;
+    border: none;
+}
+
+/* BOOTSTRAP OVERWRITE */
+.btn-primary {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: rgba(136, 136, 136, 0.5) !important;
+}
+
+.btn-primary:disabled {
+    background-color: rgba(90, 90, 90, 0.5) !important;
+}
+
+.btn.show {
+    background-color: grey;
+}
+
+.dropdown-toggle {
+    margin-right: 12px;
+}
