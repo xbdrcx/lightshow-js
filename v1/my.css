@@ -11,6 +11,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.menu-bar label {
+  color: white;
+}
+
 .menu-bar ul li {
     text-align: center;
     justify-content: center;

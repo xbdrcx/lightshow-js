@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+    overflow: hidden;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.lights-menu {
+    background-color: black;
+    min-height: 20vh;
+}
+
+.lights-menu .title {
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.lights-menu .options {
+    margin: auto;
+    display: flex;
+    gap: 20px;
+}
+
+.lights-menu .options button {
+    width: 120px;
+    text-align: center;
+    margin: auto;
+}
+
+.lights-container {
+    background-color: black;
+    min-height: 80vh;
+}
+
+/* BOOTSTRAP OVERWRITE */
+.dropdown-menu {
+    width: 20%;
+}
+
+.btn-primary {
+    background-color: grey;
+    border-color: grey;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: rgb(187, 187, 187);
+    border-color:  rgb(187, 187, 187);
+}

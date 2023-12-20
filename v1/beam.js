@@ -648,7 +648,6 @@ window.onload = function() {
     };
 };
 
-
 function autoLights(values) {
     if(values[0] == 1) {
         strobelasers_btn.click();
@@ -665,3 +664,10 @@ function autoLights(values) {
     }
 }
 
+document.getElementById("laserColor").addEventListener("change", function() {
+    Array.prototype.forEach.call((lasers), function(laser) {
+        laser.style.background = this.value;
+        console.log("1")
+        console.log(laser)
+    })
+})
