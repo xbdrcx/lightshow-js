@@ -22,13 +22,14 @@ html {
 }
 
 .lights-menu .options {
-    margin: auto;
+    margin: auto auto 15px auto;
     display: flex;
     gap: 20px;
+    
 }
 
 .lights-menu .options button {
-    width: 120px;
+    width: 160px;
     text-align: center;
     margin: auto;
 }
