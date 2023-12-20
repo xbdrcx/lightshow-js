@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="../icons/favicon.ico">
     <link rel="stylesheet" href="../bootstrap5.3.1.min.css">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
@@ -9,6 +10,10 @@
 </head>
 <body>
     
+    <div class="splash">
+        <img src="../icons/splash.png" class="splash-header center" width="24" height="24">
+    </div>
+
     <div class="lights-menu">
 
         <div class="row title">
@@ -16,9 +21,15 @@
         </div>
         <div class="row options">
             <button class="btn btn-primary dropdown-toggle" href="#" role="button" id="beamsDropdown" data-bs-toggle="dropdown" aria-expanded="false"> 
-                CREATE BEAMS 
+                BEAMS 
             </button>
             <ul class="dropdown-menu" aria-labelledby="beamsDropdown">
+                <li>
+                    <button id="beamsOnOff" type="button" class="lightshowbtn btn btn-primary" onclick="stopLightbeams()">
+                        ADD BEAM
+                    </button>
+                </li>
+                <hr>
                 <li>
                     <button id="beamsOnOff" type="button" class="lightshowbtn btn btn-primary" onclick="stopLightbeams()">
                         BEAMS ON <i class="fas fa-square" style="color: #ff0000;"></i>
@@ -44,26 +55,36 @@
                 </li>
             </ul>
             <button class="btn btn-primary dropdown-toggle" href="#" role="button" id="lasersDropdown" data-bs-toggle="dropdown" aria-expanded="false"> 
-                CREATE LASERS 
+                LASERS
             </button>
             <ul class="dropdown-menu" aria-labelledby="lasersDropdown">
                 <li>
-                    <button id="lasersOnOff" type="button" class="lightshowbtn btn btn-primary" onclick="startRotation()">
+                    <button onclick="createLasers()" type="button" class="lightshowbtn btn btn-primary">
+                        ADD LASERS
+                    </button>
+                </li>
+                <hr>
+                <li>
+                    <button id="laserOnOffBtn" type="button" class="lightshowbtn btn btn-primary">
                         LASERS OFF <i class="fas fa-square" style="color: #ff0000;"></i>
                     </button>
                 </li>
                 <li>
-                    <button id="strobeLasers" type="button" class="lightshowbtn btn btn-primary" onclick="strobeLasers()">
+                    <button onclick="strobeLasers()" type="button" class="lightshowbtn btn btn-primary">
                         STROBE LASERS
                     </button>
                 </li>
                 <li>
-                    <label for="laserSpeedRange" style="color: black;">Speed</label>
-                    <input value="2" type="range" id="laserSpeedRange" name="laserSpeedRange" min="1" max="4" oninput="laserSpeed(this.value)"/>
+                    <label for="laserColor">Color</label>
+                    <input type="color" id="laserColor" name="laserColor">
                 </li>
                 <li>
-                    <label for="laserOpacityRange" style="color: black;">Opacity</label>
-                    <input value="10" type="range" id="laserOpacityRange" name="laserOpacityRange" min="0" max="10" oninput="laserOpacity(this.value)"/>
+                    <label for="laserSpeed" style="color: black;">Speed</label>
+                    <input value="2" type="range" id="laserSpeed" name="laserSpeed" min="1" max="4" oninput="laserSpeed(this.value)"/>
+                </li>
+                <li>
+                    <label for="laserOpacity" style="color: black;">Opacity</label>
+                    <input value="10" type="range" id="laserOpacity" name="laserOpacity" min="0" max="10" oninput="laserOpacity(this.value)"/>
                 </li>
             </ul>
             <button style="margin-right: 12px;" id="flashScreen" type="button" class="lightshowbtn btn btn-primary" onclick="flashScreen()">
@@ -83,59 +104,6 @@
                 <input type="file" value="upload" id="fileimporter" name="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
                 <video id="player" style="display: none;"></video>
             </button>
-        </div>
-        <div class="row options">
-            <button class="btn btn-primary dropdown-toggle" href="#" role="button" id="beamsDropdown" data-bs-toggle="dropdown" aria-expanded="false"> 
-                BEAMS 
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="beamsDropdown">
-                <li>
-                    <button id="beamsOnOff" type="button" class="lightshowbtn btn btn-primary" onclick="stopLightbeams()">
-                        BEAMS ON <i class="fas fa-square" style="color: #ff0000;"></i>
-                    </button>
-                </li>
-                <li>
-                    <button id="beamMotionBtn" type="button" class="lightshowbtn btn btn-primary" onclick="beamMotion()">
-                        BEAM MOTION
-                    </button>
-                </li>
-                <li>
-                    <button id="beamStrobeBtn" type="button" class="lightshowbtn btn btn-primary" onclick="strobeBeams()">
-                        BEAM STROBE
-                    </button>
-                </li>
-                <li>
-                    <label for="beamSpeedRange" style="color: black;">Speed</label>
-                    <input value="10" type="range" id="beamSpeedRange" name="beamSpeedRange" min="1" max="8" oninput="beamSpeed(this.value)"/>
-                </li>
-                <li>
-                    <label for="beamOpacityRange" style="color: black;">Opacity</label>
-                    <input value="10" type="range" id="beamOpacityRange" name="beamOpacityRange" min="0" max="8" oninput="beamOpacity(this.value)"/>
-                </li>
-            </ul>
-            <button class="btn btn-primary dropdown-toggle" href="#" role="button" id="lasersDropdown" data-bs-toggle="dropdown" aria-expanded="false"> 
-                LASERS 
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="lasersDropdown">
-                <li>
-                    <button id="lasersOnOff" type="button" class="lightshowbtn btn btn-primary" onclick="startRotation()">
-                        LASERS OFF <i class="fas fa-square" style="color: #ff0000;"></i>
-                    </button>
-                </li>
-                <li>
-                    <button id="strobeLasers" type="button" class="lightshowbtn btn btn-primary" onclick="strobeLasers()">
-                        STROBE LASERS
-                    </button>
-                </li>
-                <li>
-                    <label for="laserSpeedRange" style="color: black;">Speed</label>
-                    <input value="2" type="range" id="laserSpeedRange" name="laserSpeedRange" min="1" max="4" oninput="laserSpeed(this.value)"/>
-                </li>
-                <li>
-                    <label for="laserOpacityRange" style="color: black;">Opacity</label>
-                    <input value="10" type="range" id="laserOpacityRange" name="laserOpacityRange" min="0" max="10" oninput="laserOpacity(this.value)"/>
-                </li>
-            </ul>
         </div>
 
     </div>

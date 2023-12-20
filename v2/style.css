@@ -5,9 +5,26 @@ html {
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+}
+
+.splash {
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    text-align: center;
+    transition: 0.5s ease;
+    position: absolute;
+}
+
+.splash img {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    display: block;
+    top: 45%;
+    position: sticky;
 }
 
 .lights-menu {
@@ -19,6 +36,15 @@ html {
     color: white;
     text-align: center;
     padding: 20px;
+}
+
+.lights-menu .title h1 {
+    font-size: 28px;
+    transition: 0.2s ease;
+}
+
+.lights-menu .title h1:hover {
+    transform: scale(0.8);
 }
 
 .lights-menu .options {
@@ -37,6 +63,20 @@ html {
 .lights-container {
     background-color: black;
     min-height: 80vh;
+}
+
+.laserBeams {
+    position: absolute;
+    background-color: transparent;
+    min-height: inherit;
+}
+
+.laser {
+    position: absolute;
+    border-left: 1px solid lightgreen;
+    min-height: inherit;
+    margin-bottom: 8px;
+    margin-left: 35%;
 }
 
 /* BOOTSTRAP OVERWRITE */
