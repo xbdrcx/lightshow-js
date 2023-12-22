@@ -4,6 +4,10 @@ html {
     overflow: hidden;
 }
 
+body {
+    background-color: black;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -28,7 +32,7 @@ html {
 }
 
 .lights-menu {
-    background-color: black;
+    background-color: transparent;
     min-height: 20vh;
 }
 
@@ -39,7 +43,8 @@ html {
 }
 
 .lights-menu .title h1 {
-    font-size: 28px;
+    padding: 10px;
+    font-size: 26px;
     transition: 0.2s ease;
 }
 
@@ -51,17 +56,33 @@ html {
     margin: auto auto 15px auto;
     display: flex;
     gap: 20px;
-    
+}
+
+.lights-menu .options .col-md-12 {
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
 }
 
 .lights-menu .options button {
-    width: 160px;
+    font-weight: bold;
+    background-color: rgb(179, 179, 179);
+    color: black;
     text-align: center;
+}
+
+.lights-menu .options .dropdown-menu button {
+    font-weight: bold;
+    background-color: rgb(179, 179, 179);
+    color: black;
+    text-align: center;
+    width: 150px;
     margin: auto;
 }
 
 .lights-container {
-    background-color: black;
+    background-color: transparent;
     min-height: 80vh;
 }
 
@@ -85,11 +106,26 @@ html {
 }
 
 .btn-primary {
-    background-color: grey;
-    border-color: grey;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px !important;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
-    background-color: rgb(187, 187, 187);
-    border-color:  rgb(187, 187, 187);
+    background-color: rgba(136, 136, 136, 0.5) !important;
+}
+
+.btn-primary:focus::after {
+    background-color: rgba(90, 90, 90, 0.5) !important;
+}
+
+.btn-primary:disabled {
+    background-color: rgba(90, 90, 90, 0.5) !important;
+}
+
+.btn.show {
+    background-color: grey;
+}
+
+.dropdown-toggle {
+    margin-right: 12px;
 }

@@ -1,6 +1,18 @@
-const lightsContainer = document.getElementById("lights-container")
+// - Draw a layout where user can put lights
+// - User can control ALL LASERS, an A SINGLE LASER INDIVIDIALLY
+// - 
+
+
 var laserGroups = []
 var lasersState = true;
+
+// CONTAINERS
+const lightsContainer = document.getElementById("lights-container")
+
+// BUTTONS
+const flashButton = document.getElementById("flashScreenBtn")
+const strobeLightsButton = document.getElementById("strobeLightsBtn")
+const onOffLasersButton = document.getElementById("laserOnOffBtn")
 
 // LASERS
 // - Multiple laser beams
@@ -49,12 +61,20 @@ class LaserBeams {
         } else {
             // - Create [random number between 0.4 and 0.5] * [number of lasers]
             this.strobeEffect = true;
-            for(var i=0; i<this.laserBeams.children.length; i++) {
-                this.laserBeams.children[i].style.opacity = "0.4"
-                this.strobeInterval = setInterval(function() {
-                    this.laserBeams.children[i].style.opacity = "1"
-                }, 500)
-            }
+            var numLasers = this.laserBeams.children.length
+            var lasers = this.laserBeams.children
+            this.strobeInterval = setInterval(function() {
+                for(var i=0; i<numLasers; i++) {
+                    (function(i) {
+                        lasers[i].style.opacity = "0.4"
+                        setInterval(function() {
+                            console.log(i)
+                            lasers[i].style.opacity = "1"
+                        }, 500)
+                    })
+
+                }
+            })
         }
     }
     movement() {
@@ -65,9 +85,29 @@ class LaserBeams {
             this.movementEffect = true;
             // Movement ON Code Here
             // - Create [random number between -40 and 40] * [number of lasers]
+            
         }
     }
 }
+
+// Keyboard Bindings
+document.body.onkeypress = function(e) {
+    if(e.key === "z" || e.code === "KeyZ") {
+        flashButton.click();
+    } else if (e.key === "a" || e.code === "KeyA") {
+        onOffLasersButton.click();
+    }
+}
+
+// On Flash Button Click
+flashButton.addEventListener("click", function() {
+    let flashInterval;
+    clearInterval(flashInterval);
+    document.body.style.backgroundColor = "white";
+    flashInterval = setInterval(function() {
+        document.body.style.backgroundColor = "black";
+    }, 100)
+})
 
 // Change LASERS BEAMS Opacity on range input
 document.getElementById("laserOpacity").addEventListener("input", function() {
@@ -85,7 +125,7 @@ document.getElementById("laserColor").addEventListener("input", function() {
 })
 
 // Turns LASER BEAMS ON and OFF
-document.getElementById("laserOnOffBtn").addEventListener("click", function() {
+onOffLasersButton.addEventListener("click", function() {
     if(lasersState) {
         lasersState = false;
         for(let i=0; i<laserGroups.length; i++) {
@@ -123,7 +163,26 @@ function fadeOutSplash() {
     }, 1000)
 }
 
+// UTILS
+// On Any Button Click, Defocus from Button Afterward
+document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", function() { button.blur() })
+})
+// Open Modals
+document.getElementById("openAbout").addEventListener("click", function() {
+    $('#aboutModal').modal('show');
+})
+document.getElementById("openCommands").addEventListener("click", function() {
+    $('#commandsModal').modal('show');
+})
+
 // When Document Is Loaded
 document.addEventListener("DOMContentLoaded", function() {
-    fadeOutSplash()
+    setTimeout(function() {
+        fadeOutSplash()
+        $("#warningModal").modal('show')
+        setTimeout(function() {
+            $("#warningModal").modal('hide')
+        }, 2000)
+    }, 1000)
 })
