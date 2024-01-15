@@ -1,6 +1,0 @@
-LIGHTSHOW JS 2.0
-
-- Configurar e Criar Beams
-- Configurar e Criar Lasers
-
-- Criar layouts pre-feitos

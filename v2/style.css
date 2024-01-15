@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.no-drag img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 html {
     overflow: hidden;
 }
@@ -34,6 +48,7 @@ body {
 .lights-menu {
     background-color: transparent;
     min-height: 20vh;
+    transition: opacity .2s ease;
 }
 
 .lights-menu .title {
@@ -65,20 +80,14 @@ body {
     gap: 20px;
 }
 
-.lights-menu .options button {
-    font-weight: bold;
-    background-color: rgb(179, 179, 179);
-    color: black;
-    text-align: center;
-}
-
 .lights-menu .options .dropdown-menu button {
-    font-weight: bold;
+    font-weight: 600;
     background-color: rgb(179, 179, 179);
     color: black;
     text-align: center;
     width: 150px;
     margin: auto;
+    margin-bottom: 12px;
 }
 
 .lights-container {
@@ -94,15 +103,127 @@ body {
 
 .laser {
     position: absolute;
-    border-left: 1px solid lightgreen;
-    min-height: inherit;
     margin-bottom: 8px;
     margin-left: 35%;
+    transition: transform .1s;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    bottom: 0;
+}
+
+.lightbeam {
+    position: absolute;
+    transition: border .02s;
+    width: 0;
+    height: 0;
+    border-bottom: 1px solid black;
+    z-index: -99999;
+    bottom: 0;
+}
+.horizonmotion {
+    animation: HorizonMotion .8s alternate ease-in-out infinite;
+}
+
+.lightPositionLayout {
+    width: inherit;
+    height: 240px;
+    border: 2px solid black;
+    background-color: black;
+}
+
+.modal-body .lightOptions {
+    text-align: center;
+    padding: 10px;
+}
+
+.modal-body .lightOptions .btn-primary {
+    background-color: black;
+}
+
+.modal-body .horizontal, .modal-body .horizontal-bottom {
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    gap: 45px;
+    display: flex;
+}
+
+.modal-body .horizontal-bottom {
+    position: absolute;
+    bottom: 78px;
+    left: 60px;
+}
+
+#manageLightsModal .modal-body .horizontal-bottom {
+    position: absolute;
+    bottom: 26%;
+    left: 60px;
+}
+
+.modal-body .left {
+    top: 45%;
+    display: grid;
+    position: absolute;
+    left: 20px;
+    gap: 20px;
+}
+.modal-body .right {
+    position: absolute;
+    top: 45%;
+    right: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+#manageLightsModal .modal-body .left {
+    top: 35%;
+    display: grid;
+    position: absolute;
+    left: 20px;
+    gap: 20px;
+}
+#manageLightsModal .modal-body .right {
+    position: absolute;
+    top: 35%;
+    right: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+.modal-body .lightElementButtons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.modal-body .lightElementButtons button {
+    background-color: black;
+}
+
+input[name="lightPosition"], input[name="lightType"],
+input[name="manageLightPosition"], input[name="manageLightType"] {
+    border-color: black;
+}
+input[name="lightPosition"]:checked, input[name="lightType"]:checked,
+input[name="manageLightPosition"]:checked, input[name="manageLightType"]:checked {
+    background-color: grey;
+    box-shadow: 1px 1px 1px 1px white;
+    content: '';
+    border-color: black;
+}
+input[name="lightPosition"]:active, input[name="lightType"]:active,
+input[name="manageLightPosition"]:active, input[name="manageLightType"]:active {
+    box-shadow: 1px 1px 1px 1px white;
+    border-color: black;
+}
+input[name="lightPosition"]:disabled, input[name="manageLightPosition"]:disabled {
+    background-color: rgb(51, 51, 51);
 }
 
 /* BOOTSTRAP OVERWRITE */
+
 .dropdown-menu {
-    width: 20%;
+    width: 12%;
+    text-align: center;
 }
 
 .btn-primary {
@@ -111,21 +232,35 @@ body {
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
-    background-color: rgba(136, 136, 136, 0.5) !important;
+    background-color: rgba(175, 175, 175, 0.5) !important;
 }
 
 .btn-primary:focus::after {
-    background-color: rgba(90, 90, 90, 0.5) !important;
+    background-color: rgba(175, 175, 175, 0.5) !important;
 }
 
 .btn-primary:disabled {
     background-color: rgba(90, 90, 90, 0.5) !important;
+    z-index: -999;
 }
 
 .btn.show {
     background-color: grey;
 }
 
-.dropdown-toggle {
-    margin-right: 12px;
+.form-check {
+    display: flex;
+}
+
+/* ANIMATIONS */
+@keyframes HorizonMotion { 
+    from {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(20deg)
+    }
 }
