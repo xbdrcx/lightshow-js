@@ -1,5 +1,5 @@
 # LightShow
 
-LightShow is a 2D party ligthshow simulator.
+LightShowJS - 2D party light-show simulator
 
 *HTML/CSS, Bootstrap, JavaScript*
