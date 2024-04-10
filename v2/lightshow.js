@@ -1,38 +1,17 @@
-// LIGHTSHOW - PartySimulation
+// Lightshow v2.0
+// Developed by Bruno Cruz
+// Github => https://www.github.com/xbdrcx
 
-// Imagi - Boost Your Imagination / Web3 AI Company
-
-// Create Twitch Stream extension based on LightShow
-// Create Instagram Filter based on LightShow
-// Possibility of recording a light performance 
-
-// LIGHTSHOW 3.0 IDEA??? | Feel music, feel yourself | Feel the patterns
-// - AudioJudge can identify "calmness" of music based on the median value of the sum of all the bufferValues thoughtout the music
-// - If music more calm, just make background change color calmly
-// - If music more exciting, bring lasers, light beams etc
-// - Add possibility of drag elements around inside the light-container for more liberty of choice
-// - 
-
-// LIGHTSHOW JS 2.0 - Party Made Virtual
-// A tool for people who want to make the party
-
-// - Draw a layout where user can put lights
-// - User can control ALL LASERS, an A SINGLE LASER INDIVIDIALLY
-// - Create preset type visuals to show as background
-// - 
-
-// GENERAL VARIABLES
+// General Variables
 var menuState = true
 var ligthsPlaying = false
 var isRecording = false
 var lights = false
-
-// CREATE LIGHT VARIABLES
+// Create Light Variables
 var lightTypeButtons = document.querySelectorAll("input[name='lightType']")
 var lightPositionButtons = document.querySelectorAll("input[name='lightPosition']")
 var usedPositions = []
-
-// LASER CONTROL VARIABLES
+// Laser Control Variables
 var laserGroups = []
 var lasersColor = "red"
 var lasersState = true
@@ -42,18 +21,16 @@ var numLasers = 15
 var angleAperture = 450
 var minLaserAngle = -(angleAperture/numLasers)
 var maxLaserAngle = angleAperture/numLasers
-
-// BEAM CONTROL VARIABLES
+// Beam Control Variables
 var beams = []
 var beamsColor = "white"
 var beamsState = true
 var beamsMoving = false
 var beamAperture = 20
 var beamIntensity = 0.6
-
-// LIGHT CONTROL VARIABLES
+// Light Control Variables
 var movementSpeed = 150
-var lightDistance = 750
+var lightDistance = document.getElementById("lights-container").offsetHeight // Before offsetHeight, value was 750
 var strobeSpeed = 100
 var lightsStrobe = false;
 var lightsStrobeInterval = null;
@@ -64,12 +41,10 @@ var lightsBottom = [false, false, false, false, false, false, false]
 var lightsLeft = [false, false, false, false, false]
 var lightsRight = [false, false, false, false, false]
 var lightElements = [lightsTop, lightsBottom, lightsLeft, lightsRight]
-
-// CONTAINERS
+// Containers
 const menuContainer = document.getElementById("lights-menu")
 const lightsContainer = document.getElementById("lights-container")
-
-// BUTTONS - General
+// Buttons (General)
 const recordLightsButton = document.getElementById("recordLightsBtn")
 const autoLightsButton = document.getElementById("importbtn")
 const flashButton = document.getElementById("flashScreenBtn")
@@ -77,15 +52,15 @@ const strobeScreenButton = document.getElementById("strobeScreenBtn")
 const strobeLightsButton = document.getElementById("strobeLightsBtn")
 const confirmAddLight = document.getElementById("addLightBtn")
 const manageLightsButton = document.getElementById("openManageLights")
-// BUTTONS - Lasers
+// Buttons (Lasers)
 const onOffLasersButton = document.getElementById("laserOnOffBtn")
 const moveLasersButton = document.getElementById("moveLasersBtn")
 const laserOptionsButton = document.getElementById("lasersDropdown")
-// BUTTONS - Beams
+// Buttons (Beams)
 const onOffBeamsButton = document.getElementById("beamsOnOffBtn")
 const moveBeamsButton = document.getElementById("beamMotionBtn")
 const beamOptionsButton = document.getElementById("beamsDropdown")
-// BUTTONS - Manage Light
+// Buttons (Manage Light)
 const removeLightButton = document.getElementById("removeLightBtn")
 
 class LaserBeams {
@@ -384,16 +359,16 @@ function flashScreen() {
     buttons.forEach((button) => {
         button.style.color = "black"
     })
-    document.getElementById("openCommands").children[0].src = "../icons/info.png"
-    document.getElementById("openAbout").children[0].src = "../icons/keyboard.ico"
+    document.getElementById("openCommands").children[0].src = "./icons/info.png"
+    document.getElementById("openAbout").children[0].src = "./icons/keyboard.ico"
     setTimeout(function() {
         document.body.style.backgroundColor = "black";
         document.getElementById("apptitle").style.color = "white"
         buttons.forEach((button) => {
             button.style.color = "white"
         })
-        document.getElementById("openCommands").children[0].src = "../icons/info_white.ico"
-        document.getElementById("openAbout").children[0].src = "../icons/keyboard_white.ico"
+        document.getElementById("openCommands").children[0].src = "./icons/info_white.ico"
+        document.getElementById("openAbout").children[0].src = "./icons/keyboard_white.ico"
     }, 100)
 }
 

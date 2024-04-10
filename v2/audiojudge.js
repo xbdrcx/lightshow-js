@@ -1,3 +1,11 @@
+// AudioJudge v1.0
+// Developed by Bruno Cruz
+// Github => https://www.github.com/xbdrcx
+
+var player = document.getElementById("player");
+var file = document.getElementById("fileimporter");
+let file_importer = document.getElementById("fileimporter");
+
 function fileUpload(file) {
     var URL = window.URL || window.webkitURL
     var type = file.type
@@ -18,8 +26,6 @@ function fileUpload(file) {
     }
 }
 
-var file = document.getElementById("fileimporter");
-let file_importer = document.getElementById("fileimporter");
 document.getElementById("importbtn").addEventListener("click", function() {
     document.getElementById("fileimporter").click();
 })
@@ -28,7 +34,6 @@ file_importer.addEventListener("change", function() {
     fileUpload(this.files[0]);
 })
 
-var player = document.getElementById("player");
 window.onload = function() {
     
     file.onchange = function() {
