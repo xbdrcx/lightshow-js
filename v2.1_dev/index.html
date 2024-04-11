@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../bootstrap5.3.1.min.css">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="../bootstrap5.3.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LightShow JS</title>
@@ -17,20 +18,7 @@
 
     <div id="lights-menu" class="lights-menu">
 
-        <div class="row title">
-            <h1 id="apptitle">Lightshow JS</h1>
-        </div>
-        <div class="row options">
-            <div class="col-md-12">
-                <button name="menuButton" id="openAddLight" type="button" class="lightshowbtn btn btn-primary">
-                    Add Light
-                </button>
-                <button disabled name="menuButton" id="openManageLights" type="button" class="lightshowbtn btn btn-primary" style="margin-right: 20px;">
-                    Manage Lights
-                </button>
-                <button name="menuButton" disabled class="btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
-                    Show Controls
-                </button>
+                <video id="player" style="display: none;"></video>
 
                 <!-- Draggable Beam Control Menu -->
                 <div id="beamMenu" class="draggableDiv" style="display: none;">
@@ -94,12 +82,55 @@
                     </button>
                 </div>
 
-                <button name="menuButton" disabled data-toggle="tooltip" data-bs-placement="bottom" id="importbtn" title="Import File (L)" class="btn btn-primary">
-                    AutoLights
-                    <input type="file" value="upload" id="fileimporter" name="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
-                    <video id="player" style="display: none;"></video>
+        <div class="row title">
+            <h1 id="apptitle">Lightshow JS</h1>
+            <div class="dropdown" id="mobileMenu">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <button name="menuButton" id="openAddLight" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
+                        Add Light
+                    </button>
+                    <br>
+                    <button disabled name="menuButton" id="openManageLights" type="button" class="manageLightBtn lightshowbtn btn btn-primary">
+                        Manage Lights
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled class="showhideControlsBtn btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
+                        Show Controls
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled data-toggle="tooltip" data-bs-placement="bottom" id="importbtn" title="Import File (L)" class="autolightsBtn btn btn-primary">
+                        AutoLights
+                        <input type="file" value="upload" id="fileimporter" class="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
+                        <img src="../icons/play-white.ico" width="24" height="24">
+                    </button>
+                    <br>
+                    <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+                        <img src="../icons/info_white.ico" width="24" height="24">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row options">
+            <div class="col-md-12">
+                <button name="menuButton" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
+                    Add Light
+                    <!-- <span class="popuptext" id="myPopup">Click here to start</span> -->
                 </button>
-                <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" id="playLights" type="button" class="btn btn-primary">
+                <button disabled name="menuButton" id="openManageLights" type="button" class="manageLightBtn lightshowbtn btn btn-primary">
+                    Manage Lights
+                </button>
+                <button name="menuButton" disabled class="showhideControlsBtn btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
+                    Show Controls
+                </button>
+                <button name="menuButton" disabled data-toggle="tooltip" data-bs-placement="bottom" id="importbtn" title="Import File (L)" class="autolightsBtn btn btn-primary">
+                    AutoLights
+                    <input type="file" value="upload" id="fileimporter" class="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
+                </button>
+                <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
                     <img src="../icons/play-white.ico" width="24" height="24">
                 </button>
                 <!-- <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" id="recordLightsBtn" title="Import File (L)" class="btn btn-primary">
@@ -108,7 +139,7 @@
                 <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="Keyboard Commands" id="openCommands" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandsModal">
                     <img src="../icons/keyboard_white.ico" width="24" height="24">
                 </button>
-                <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+                <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
                     <img src="../icons/info_white.ico" width="24" height="24">
                 </button>
             </div>
@@ -278,7 +309,7 @@
                         <div class="row">
                             <div>
                                 <button disabled onclick="removeLight()" id="removeLightBtn" class="lightshowbtn btn btn-primary">
-                                    Remove Light
+                                    Remove light
                                 </button>
                                 <!-- <label for="laserIntensity" style="color: black;">Intensity</label>
                                 <input value="10" type="range" id="laserIntensity" name="laserIntensity" min="0" max="10" oninput="laserOpacity(this.value)"/>
@@ -320,7 +351,7 @@
                     <h4 style="text-align: center;">About Ligthshow</h4>
                     <hr>
                     <p>Developed by <a href="https://www.github.com/xbdrcx" target="_blank">Bruno</a>, 
-                        Lightshow JS 2.1 is a 2D party light-system simulator developed with Pure JavaScript, Bootstrap and much love for both tech and music.</p>
+                        Lightshow JS 2.1 is a 2D party light-system simulator developed with Javascript, Bootstrap and CSS</p>
                 </div>
             </div>
         </div>
@@ -332,28 +363,32 @@
             <div class="modal-content">
                 <div class="modal-body player-tips">
                     <hr>
-                    <h4>General Commands</h4>
+                    <h4>Keyboard Bindings</h4>
                     <hr>
                     <p><span>Z</span> - Flash Screen</p>
                     <p><span>X</span> - ON/OFF All Lighting Strobe</p>
+                    <p><span>N</span> - SHOW/HIDE Light Controls</p>
+                    <!-- <p><span>M</span> - SHOW/HIDE Menu Inteface</p> -->
                     <hr>
                     <h4>Light Beams</h4>
                     <hr>
                     <p><span>Q</span> - ON/OFF Beams</p>
-                    <p><span>W</span> - Descrese Beam Intensity</p>
-                    <p><span>E</span> - Increase Beam Intensity</p>
-                    <p><span>R</span> - Decrease Beam Speed</p>
-                    <p><span>T</span> - Increase Beam Speed</p>
-                    <p><span>Y</span> - ON/OFF Beam Strobe</p>
+                    <!-- <p><span>W</span> - Descrese Beam Intensity</p>
+                    <p><span>E</span> - Increase Beam Intensity</p> -->
+                    <!-- <p><span>R</span> - Decrease Beam Speed</p>
+                    <p><span>T</span> - Increase Beam Speed</p> -->
+                    <p><span>Y</span> - ON/OFF Beam Movement</p>
+                    <!-- <p><span>U</span> - ON/OFF Beam Strobe</p> -->
                     <hr>
                     <h4>Lasers</h4>
                     <hr>
                     <p><span>A</span> - ON/OFF Lasers</p>
-                    <p><span>S</span> - Descrese Lasers Intensity</p>
-                    <p><span>D</span> - Increase Lasers Intensity</p>
-                    <p><span>F</span> - Decrease Lasers Speed</p>
-                    <p><span>G</span> - Increase Lasers Speed</p>
-                    <p><span>H</span> - ON/OFF Lasers Strobe</p>
+                    <!-- <p><span>S</span> - Descrese Lasers Intensity</p>
+                    <p><span>D</span> - Increase Lasers Intensity</p> -->
+                    <!-- <p><span>F</span> - Decrease Lasers Speed</p>
+                    <p><span>G</span> - Increase Lasers Speed</p> -->
+                    <p><span>H</span> - ON/OFF Lasers Movements</p>
+                    <!-- <p><span>J</span> - ON/OFF Lasers Strobe</p> -->
                 </div>
             </div>
         </div>

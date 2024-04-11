@@ -6,7 +6,6 @@
 var lightsMenusState = false
 var menuState = true
 var ligthsPlaying = false
-// var isRecording = false
 var lights = false
 // Create Light Variables
 var lightTypeButtons = document.querySelectorAll("input[name='lightType']")
@@ -46,13 +45,15 @@ var lightElements = [lightsTop, lightsBottom, lightsLeft, lightsRight]
 const menuContainer = document.getElementById("lights-menu")
 const lightsContainer = document.getElementById("lights-container")
 // Buttons (General)
-// const recordLightsButton = document.getElementById("recordLightsBtn")
-const autoLightsButton = document.getElementById("importbtn")
+const autoLightsButtons = document.getElementsByClassName("autolightsBtn")
 const flashButton = document.getElementById("flashScreenBtn")
 const strobeScreenButton = document.getElementById("strobeScreenBtn")
 const strobeLightsButton = document.getElementById("strobeLightsBtn")
 const confirmAddLight = document.getElementById("addLightBtn")
-const manageLightsButton = document.getElementById("openManageLights")
+const openAboutButtons = document.getElementsByClassName("openAboutBtn")
+const openAddLightButtons = document.getElementsByClassName("openLightBtn")
+const openManageLightButtons = document.getElementsByClassName("manageLightBtn")
+const showhideControlsButtons = document.getElementsByClassName("showhideControlsBtn")
 // Buttons (Lasers)
 const onOffLasersButton = document.getElementById("laserOnOffBtn")
 const moveLasersButton = document.getElementById("moveLasersBtn")
@@ -63,6 +64,7 @@ const moveBeamsButton = document.getElementById("beamMotionBtn")
 const showhidemenusButton = document.getElementById("showhideMenusBtn")
 // Buttons (Manage Light)
 const removeLightButton = document.getElementById("removeLightBtn")
+
 
 class LaserBeams {
     constructor(orientation, positionNum) {
@@ -363,7 +365,9 @@ function flashScreen() {
         button.style.color = "black"
     })
     document.getElementById("openCommands").children[0].src = "../icons/keyboard.ico"
-    document.getElementById("openAbout").children[0].src = "../icons/info.png"
+    for (let i = 0; i < openAboutButtons.length; i++) {
+        openAboutButtons[i].children[0].src = "../icons/info.png"
+    }
     setTimeout(function() {
         document.body.style.backgroundColor = "black";
         document.getElementById("apptitle").style.color = "white"
@@ -371,7 +375,9 @@ function flashScreen() {
             button.style.color = "white"
         })
         document.getElementById("openCommands").children[0].src = "../icons/keyboard_white.ico"
-        document.getElementById("openAbout").children[0].src = "../icons/info_white.ico"
+        for (let i = 0; i < openAboutButtons.length; i++) {
+            openAboutButtons[i].children[0].src = "../icons/white_info.png"
+        }
     }, 100)
 }
 
@@ -534,7 +540,6 @@ function addLightElement() {
             var beam = new LightBeam(lightOrientation, lightNumber)
             beams.push(beam)
             document.querySelector("input[name='lightPosition']:checked").innerHTML = "B"
-            // Verify if BEAM MENU is visible
         } else if (lightType == "lasers") {
             var laserGroup = new LaserBeams(lightOrientation, lightNumber)
             laserGroups.push(laserGroup)
@@ -559,25 +564,25 @@ function addLightElement() {
 }
 
 // Hide-Show Menu Bar
-function hideMenu() {
-    if(menuState) {
-        menuState = false
-        menuContainer.style.opacity = "0"
-        menuContainer.style.display = "none"
-        lightsContainer.style.minHeight = "100vh"
-        lightsContainer.style.height = "100vh"
-        for(let i=0; i<beams.length; i++) {
-            beams[i].lightbeam.style.position = "relative"
-            beams[i].lightbeam.style.top = 0
-        }
-    } else {
-        menuState = true
-        menuContainer.style.opacity = "1"
-        menuContainer.style.display = ""
-        lightsContainer.style.minHeight = "80vh"
-        lightsContainer.style.height = "80vh"
-    }
-}
+// function hideMenu() {
+//     if(menuState) {
+//         menuState = false
+//         menuContainer.style.opacity = "0"
+//         menuContainer.style.display = "none"
+//         lightsContainer.style.minHeight = "100vh"
+//         lightsContainer.style.height = "100vh"
+//         for(let i=0; i<beams.length; i++) {
+//             beams[i].lightbeam.style.position = "relative"
+//             beams[i].lightbeam.style.top = 0
+//         }
+//     } else {
+//         menuState = true
+//         menuContainer.style.opacity = "1"
+//         menuContainer.style.display = ""
+//         lightsContainer.style.minHeight = "80vh"
+//         lightsContainer.style.height = "80vh"
+//     }
+// }
 
 function autoLights(values) {
     if(values[0] == 1) {
@@ -620,18 +625,30 @@ function activateButtons() {
     flashButton.removeAttribute("disabled")
     strobeLightsButton.removeAttribute("disabled")
     strobeScreenButton.removeAttribute("disabled")
-    autoLightsButton.removeAttribute("disabled")
-    // recordLightsButton.removeAttribute("disabled")
-    manageLightsButton.removeAttribute("disabled")
+    for (let i = 0; i < autoLightsButtons.length; i++) {
+        autoLightsButtons[i].removeAttribute("disabled")
+    }
+    for (let i = 0; i < openManageLights.length; i++) {
+        openManageLightButtons[i].removeAttribute("disabled")
+    }
+    for (let i = 0; i < showhideControlsButtons.length; i++) {
+        showhideControlsButtons[i].removeAttribute("disabled")
+    }
 }
 
 function disabledButtons() {
     flashButton.setAttribute("disabled", true)
     strobeLightsButton.setAttribute("disabled", true)
     strobeScreenButton.setAttribute("disabled", true)
-    autoLightsButton.setAttribute("disabled", true)
-    // recordLightsButton.setAttribute("disabled", true)
-    manageLightsButton.setAttribute("disabled", true)
+    for (let i = 0; i < autoLightsButtons.length; i++) {
+        autoLightsButtons[i].setAttribute("disabled", true)
+    }
+    for (let i = 0; i < openManageLights.length; i++) {
+        openManageLightButtons[i].setAttribute("disabled", true)
+    }
+    for (let i = 0; i < showhideControlsButtons.length; i++) {
+        showhideControlsButtons[i].setAttribute("disabled", true)
+    }
 }
 
 function removeLight() {
@@ -653,7 +670,7 @@ function removeLight() {
             }
         }
     }
-    selectedLight.checked = false
+    selectedLight.setAttribute("checked", false)
     selectedLight.setAttribute("disabled", true)
     if(laserGroups.length == 0 && beams.length == 0) {
         lights = false
@@ -661,7 +678,8 @@ function removeLight() {
     }
     usedPositions.forEach((value) => {
         if(value == selectedLight.value) {
-            delete value
+            index = usedPositions.indexOf(value)
+            usedPositions.splice(index, 1)
         }
     })
 }
@@ -725,82 +743,99 @@ $('.dropdown-menu button, .dropdown-menu label').click(function(e) {
     e.preventDefault();
 });
 // Open-Close Modals
-document.getElementById("openAbout").addEventListener("click", function() {
-    $('#aboutModal').modal('show');
-})
+for (let i=0; i < openAboutButtons.length; i++) {
+    openAboutButtons[i].addEventListener("click", function() {
+        $('#aboutModal').modal('show');
+    })
+}
 document.getElementById("openCommands").addEventListener("click", function() {
     $('#commandsModal').modal('show');
 })
-document.getElementById("openAddLight").addEventListener("click", function() {
-    for(let i=0; i<usedPositions.length; i++) {
-        document.getElementById(usedPositions[i]).setAttribute("disabled", true)              
-    }
-    $('#addLightModal').modal('show');
-})
+
+for (var i = 0; i < openAddLightButtons.length; i++) {
+    openAddLightButtons[i].addEventListener("click", function() {
+        for(let i=0; i<usedPositions.length; i++) {
+            document.getElementById(usedPositions[i]).setAttribute("disabled", true)              
+        }
+        $('#addLightModal').modal('show');
+    })
+}
+
+for (var i = 0; i < openManageLightButtons.length; i++) {
+    openManageLightButtons[i].addEventListener("click", function() {
+        let manageLightBeamsButton = document.getElementById("manageLightBeams")
+        let manageLasersButton = document.getElementById("manageLasers")
+        let modal = document.getElementById("manageLightsModal")
+        let radioButtons = modal.querySelectorAll("input[name='manageLightPosition']")
+        radioButtons.forEach((radioButton) => {
+            radioButton.setAttribute("disabled", true)
+        })
+        if(beams.length > 0) {
+            manageLightBeamsButton.removeAttribute("disabled")
+        }
+        if(laserGroups.length > 0) {
+            manageLasersButton.removeAttribute("disabled")
+        }
+        manageLightBeamsButton.addEventListener("click", function() {
+            // Verifica Se Existem BEAMS E Ativa Apenas RadioButtons Das Suas Posiçoes
+            radioButtons.forEach((radioButton) => {
+                radioButton.setAttribute("disabled", true)
+                radioButton.addEventListener("click", function() {
+                    removeLightButton.removeAttribute("disabled")
+                })
+                for(let i=0; i<beams.length; i++) {
+                    if(radioButton.id == beams[i].lightPosition) {
+                        radioButton.removeAttribute("disabled")
+                    }
+                }
+            })
+        })
+        manageLasersButton.addEventListener("click", function() {
+            // Verifica Se Existem LASERS E Ativa Apenas RadioButtons Das Suas Posiçoes
+            radioButtons.forEach((radioButton) => {
+                radioButton.setAttribute("disabled", true)
+                radioButton.addEventListener("click", function() {
+                    removeLightButton.removeAttribute("disabled")
+                })
+                for(let i=0; i<laserGroups.length; i++) {
+                    if(radioButton.id == laserGroups[i].lightPosition) {
+                        radioButton.removeAttribute("disabled")
+                    }
+                }
+            })
+        })
+        $("#manageLightsModal").modal("show");
+    })
+}
+
+
 document.getElementById("cancelAddLight").addEventListener("click", function() {
     $("#addLightModal").modal("hide");
     resetAddLightModal();
 })
-manageLightsButton.addEventListener("click", function() {
-    let manageLightBeamsButton = document.getElementById("manageLightBeams")
-    let manageLasersButton = document.getElementById("manageLasers")
-    let modal = document.getElementById("manageLightsModal")
-    let radioButtons = modal.querySelectorAll("input[name='manageLightPosition']")
-    radioButtons.forEach((radioButton) => {
-        radioButton.setAttribute("disabled", true)
-    })
-    if(beams.length > 0) {
-        manageLightBeamsButton.removeAttribute("disabled")
-    }
-    if(laserGroups.length > 0) {
-        manageLasersButton.removeAttribute("disabled")
-    }
-    manageLightBeamsButton.addEventListener("click", function() {
-        // Verifica Se Existem BEAMS E Ativa Apenas RadioButtons Das Suas Posiçoes
-        radioButtons.forEach((radioButton) => {
-            radioButton.setAttribute("disabled", true)
-            radioButton.addEventListener("click", function() {
-                removeLightButton.removeAttribute("disabled")
-            })
-            for(let i=0; i<beams.length; i++) {
-                if(radioButton.id == beams[i].lightPosition) {
-                    radioButton.removeAttribute("disabled")
-                }
-            }
-        })
-    })
-    manageLasersButton.addEventListener("click", function() {
-        // Verifica Se Existem LASERS E Ativa Apenas RadioButtons Das Suas Posiçoes
-        radioButtons.forEach((radioButton) => {
-            radioButton.setAttribute("disabled", true)
-            radioButton.addEventListener("click", function() {
-                removeLightButton.removeAttribute("disabled")
-            })
-            for(let i=0; i<laserGroups.length; i++) {
-                if(radioButton.id == laserGroups[i].lightPosition) {
-                    radioButton.removeAttribute("disabled")
-                }
-            }
-        })
-    })
-    $("#manageLightsModal").modal("show");
-})
+
 document.getElementById("closeManageLights").addEventListener("click", function() {
     $("#manageLightsModal").modal("hide");
 })
 
-showhidemenusButton.addEventListener("click", function() {
-    console.log("clicking")
-    if (lightsMenusState == true) {
-        lightsMenusState = false
-        $(".draggableDiv").fadeOut()
-        showhidemenusButton.innerHTML = "Show Controls"
-    } else {
-        lightsMenusState = true
-        $(".draggableDiv").fadeIn()
-        showhidemenusButton.innerHTML = "Hide Controls"
-    }
-})
+for (let i=0; i < showhideControlsButtons.length; i++) {
+    showhideControlsButtons[i].addEventListener("click", function() {
+        console.log("clicking")
+        if (lightsMenusState == true) {
+            lightsMenusState = false
+            $(".draggableDiv").fadeOut()
+            for (let i=0; i < showhideControlsButtons.length; i++) {
+                showhideControlsButtons[i].innerHTML = "Show Controls"
+            }
+        } else {
+            lightsMenusState = true
+            $(".draggableDiv").fadeIn()
+            for (let i=0; i < showhideControlsButtons.length; i++) {
+                showhideControlsButtons[i].innerHTML = "Hide Controls"
+            }
+        }
+    })
+}
 
 function initScreen() {
     setTimeout(function() {

@@ -1,0 +1,3 @@
+- Autolights Microphone Mode (hears the microphone stream and lights execute according to the audio)
+- Autolights Spotify/Youtube Mode
+- 
