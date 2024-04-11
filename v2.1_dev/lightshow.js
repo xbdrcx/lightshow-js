@@ -376,7 +376,7 @@ function flashScreen() {
         })
         document.getElementById("openCommands").children[0].src = "../icons/keyboard_white.ico"
         for (let i = 0; i < openAboutButtons.length; i++) {
-            openAboutButtons[i].children[0].src = "../icons/white_info.png"
+            openAboutButtons[i].children[0].src = "../icons/info_white.ico"
         }
     }, 100)
 }
