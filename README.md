@@ -1,5 +1,5 @@
 # Lightshow JS
-2D party light-show simulator
+2D Party Light-System Simulator
 
 *HTML/CSS, Bootstrap, JavaScript*
 
