@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="../icons/favicon.ico">
+    <link rel="icon" href="./icons/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../bootstrap5.3.1.min.css">
+    <link rel="stylesheet" href="./bootstrap5.3.1.min.css">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="../bootstrap5.3.1.min.js"></script>
+    <script type="text/javascript" src="./bootstrap5.3.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LightShow JS</title>
@@ -13,7 +13,7 @@
 <body class="prevent-select no-drag">
     
     <div class="splash">
-        <img src="../icons/splash.png" class="splash-header center" width="24" height="24">
+        <img src="./icons/splash.png" class="splash-header center" width="24" height="24">
     </div>
 
     <div id="lights-menu" class="lights-menu">
@@ -22,7 +22,7 @@
 
                 <!-- Draggable Beam Control Menu -->
                 <div id="beamMenu" class="draggableDiv" style="display: none;">
-                    <div id="beamMenuHeader" class="draggableDivHeader"><img src="../icons/drag.ico"></div>
+                    <div id="beamMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
                     <button id="beamsOnOffBtn" type="button" class="lightshowbtn btn btn-primary">
                         BEAMS ON <i id="beamsStateColor" class="fas fa-square" style="color: green;"></i>
                     </button>
@@ -47,7 +47,7 @@
 
                 <!-- Draggable Laser Control Menu -->
                 <div id="laserMenu" class="draggableDiv" style="display: none;">
-                    <div id="laserMenuHeader" class="draggableDivHeader"><img src="../icons/drag.ico"></div>
+                    <div id="laserMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
                     <button id="laserOnOffBtn" type="button" class="lightshowbtn btn btn-primary">
                         LASERS OFF <i id="lasersStateColor" class="fas fa-square" style="color: green;"></i>
                     </button>
@@ -68,7 +68,7 @@
 
                 <!-- Draggable Lights Control Menu -->
                 <div id="lightsMenu" class="draggableDiv" style="display: none;">
-                    <div id="lightsMenuHeader" class="draggableDivHeader"><img src="../icons/drag.ico"></div>
+                    <div id="lightsMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
                     <button name="menuButton" disabled id="flashScreenBtn" type="button" class="lightshowbtn btn btn-primary">
                         FLASH
                     </button>
@@ -85,7 +85,7 @@
         <div class="row title">
             <h1 id="apptitle">Lightshow JS</h1>
             <div class="dropdown" id="mobileMenu">
-                <button class="dropbtn"><img src="../icons/menuicon.png"></button>
+                <button class="dropbtn"><img src="./icons/menuicon.png"></button>
                 <div class="dropdown-content">
                     <button name="menuButton" id="openAddLight" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
                         Add Light
@@ -105,11 +105,11 @@
                     </button>
                     <br>
                     <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
-                        <img src="../icons/play-white.ico" width="24" height="24">
+                        <img src="./icons/play-white.ico" width="24" height="24">
                     </button>
                     <br>
                     <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
-                        <img src="../icons/info.png" width="24" height="24">
+                        <img src="./icons/info.png" width="24" height="24">
                     </button>
                 </div>
             </div>
@@ -118,7 +118,6 @@
             <div class="col-md-12">
                 <button name="menuButton" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
                     Add Light
-                    <!-- <span class="popuptext" id="myPopup">Click here to start</span> -->
                 </button>
                 <button disabled name="menuButton" id="openManageLights" type="button" class="manageLightBtn lightshowbtn btn btn-primary">
                     Manage Lights
@@ -131,16 +130,13 @@
                     <input type="file" value="upload" id="fileimporter" class="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
                 </button>
                 <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
-                    <img src="../icons/play-white.ico" width="24" height="24">
+                    <img src="./icons/play-white.ico" width="24" height="24">
                 </button>
-                <!-- <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" id="recordLightsBtn" title="Import File (L)" class="btn btn-primary">
-                    Record <i id="recordLightsColor" class="fas fa-circle" style="color: grey;"></i>
-                </button> -->
                 <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="Keyboard Commands" id="openCommands" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandsModal">
-                    <img src="../icons/keyboard_white.ico" width="24" height="24">
+                    <img src="./icons/keyboard_white.ico" width="24" height="24">
                 </button>
                 <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
-                    <img src="../icons/info_white.ico" width="24" height="24">
+                    <img src="./icons/info_white.ico" width="24" height="24">
                 </button>
             </div>
         </div>
@@ -163,25 +159,6 @@
                     <hr>
 
                     <div class="row lightOptions">
-                        <div class="row" style="margin-bottom: 20px;">
-                            <!-- <div class="col-md-6">
-                                <button class="btn btn-primary" type="button" id="randomLights" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Randomize
-                                </button>
-                            </div>
-                            <div class="col-md-6">
-                                <a id="typeLightsDropdown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Light Setup
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="typeLightsDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div> -->
-                        </div>
                         <div class="row">
                             <div>
                                 <input value="lightbeam" class="form-check-input" type="radio" name="lightType">
@@ -311,10 +288,6 @@
                                 <button disabled onclick="removeLight()" id="removeLightBtn" class="lightshowbtn btn btn-primary">
                                     Remove light
                                 </button>
-                                <!-- <label for="laserIntensity" style="color: black;">Intensity</label>
-                                <input value="10" type="range" id="laserIntensity" name="laserIntensity" min="0" max="10" oninput="laserOpacity(this.value)"/>
-                                <label for="laserSpeed" style="color: black;">Speed</label>
-                                <input value="150" type="range" id="laserSpeed" name="laserSpeed" min="50" max="500" oninput="laserSpeed(this.value)"/> -->
                             </div>
                         </div>
                     </div>
@@ -346,12 +319,13 @@
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-body player-tips">
+                <div class="modal-body player-tips" style="text-align: center;">
                     <hr>
                     <h4 style="text-align: center;">About Ligthshow</h4>
                     <hr>
-                    <p>Developed by <a href="https://www.github.com/xbdrcx" target="_blank">Bruno</a>, 
-                        Lightshow JS 2.1 is a 2D party light-system simulator developed with Javascript, Bootstrap and CSS</p>
+                    <p>Lightshow JS is a 2D party light-system simulator developed with Javascript, Bootstrap and CSS</p>
+                    <p>Developed by <a href="https://www.github.com/xbdrcx" target="_blank">Bruno Cruz</a></p>
+                    <p>Version 2.1.1</p>
                 </div>
             </div>
         </div>
@@ -368,27 +342,16 @@
                     <p><span>Z</span> - Flash Screen</p>
                     <p><span>X</span> - ON/OFF All Lighting Strobe</p>
                     <p><span>N</span> - SHOW/HIDE Light Controls</p>
-                    <!-- <p><span>M</span> - SHOW/HIDE Menu Inteface</p> -->
                     <hr>
                     <h4>Light Beams</h4>
                     <hr>
                     <p><span>Q</span> - ON/OFF Beams</p>
-                    <!-- <p><span>W</span> - Descrese Beam Intensity</p>
-                    <p><span>E</span> - Increase Beam Intensity</p> -->
-                    <!-- <p><span>R</span> - Decrease Beam Speed</p>
-                    <p><span>T</span> - Increase Beam Speed</p> -->
                     <p><span>Y</span> - ON/OFF Beam Movement</p>
-                    <!-- <p><span>U</span> - ON/OFF Beam Strobe</p> -->
                     <hr>
                     <h4>Lasers</h4>
                     <hr>
                     <p><span>A</span> - ON/OFF Lasers</p>
-                    <!-- <p><span>S</span> - Descrese Lasers Intensity</p>
-                    <p><span>D</span> - Increase Lasers Intensity</p> -->
-                    <!-- <p><span>F</span> - Decrease Lasers Speed</p>
-                    <p><span>G</span> - Increase Lasers Speed</p> -->
                     <p><span>H</span> - ON/OFF Lasers Movements</p>
-                    <!-- <p><span>J</span> - ON/OFF Lasers Strobe</p> -->
                 </div>
             </div>
         </div>
@@ -396,8 +359,7 @@
 
 </body>
 </html>
-
-<script src="../jquery-3.7.1.js"></script>
-<script src="../bootstrap5.3.1.min.js"></script>
+<script src="./jquery-3.7.1.js"></script>
+<script src="./bootstrap5.3.1.min.js"></script>
 <script src="audiojudge.js"></script>
 <script src="lightshow.js"></script>

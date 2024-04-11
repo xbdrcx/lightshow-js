@@ -1,6 +1,4 @@
-// AudioJudge v1.0
-// Developed by Bruno Cruz
-// Github => https://www.github.com/xbdrcx
+// AudioJudge v1.0 (Lightshow adaptation), Bruno Cruz 2024 @ https://www.github.com/xbdrcx
 
 var player = document.getElementById("player");
 let file_importers = document.getElementsByClassName("fileimporter");

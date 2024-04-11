@@ -1,6 +1,4 @@
-// Lightshow v2.1
-// Developed by Bruno Cruz
-// Github => https://www.github.com/xbdrcx
+// Lightshow v2.1.1, Bruno Cruz 2024 @ https://www.github.com/xbdrcx
 
 // General Variables
 var lightsMenusState = false
@@ -325,31 +323,6 @@ document.body.onkeypress = function(e) {
     } 
 }
 
-// recordLightsButton.addEventListener("click", function() {
-//     if(isRecording) {
-//         isRecording = false
-//         document.getElementById("recordLightsColor").style.color = "grey"
-//         // Code Stop Screen Recording Goes Here
-//     } else {
-//         isRecording = true
-//         recordLights()
-//     }
-// })
-
-// function recordLights() {
-//     let constraints = {
-//         video: {
-//             mediaSource: "screen"
-//         }
-//     };
-//     navigator.mediaDevices.getUserMedia(constraints).then(mediaStream => {
-//         document.getElementById("recordLightsColor").style.color = "red"
-//         console.log("Recording")
-//         console.log(mediaStream)
-//         // Code Screen Recording Goes Here
-//     });
-// }
-
 // On Flash Button Click
 flashButton.addEventListener("click", function(e) {
     e.preventDefault()
@@ -364,9 +337,9 @@ function flashScreen() {
     buttons.forEach((button) => {
         button.style.color = "black"
     })
-    document.getElementById("openCommands").children[0].src = "../icons/keyboard.ico"
+    document.getElementById("openCommands").children[0].src = "./icons/keyboard.ico"
     for (let i = 0; i < openAboutButtons.length; i++) {
-        openAboutButtons[i].children[0].src = "../icons/info.png"
+        openAboutButtons[i].children[0].src = "./icons/info.png"
     }
     setTimeout(function() {
         document.body.style.backgroundColor = "black";
@@ -374,9 +347,9 @@ function flashScreen() {
         buttons.forEach((button) => {
             button.style.color = "white"
         })
-        document.getElementById("openCommands").children[0].src = "../icons/keyboard_white.ico"
+        document.getElementById("openCommands").children[0].src = "./icons/keyboard_white.ico"
         for (let i = 0; i < openAboutButtons.length; i++) {
-            openAboutButtons[i].children[0].src = "../icons/info_white.ico"
+            openAboutButtons[i].children[0].src = "./icons/info_white.ico"
         }
     }, 100)
 }
@@ -563,27 +536,6 @@ function addLightElement() {
     lights = true
 }
 
-// Hide-Show Menu Bar
-// function hideMenu() {
-//     if(menuState) {
-//         menuState = false
-//         menuContainer.style.opacity = "0"
-//         menuContainer.style.display = "none"
-//         lightsContainer.style.minHeight = "100vh"
-//         lightsContainer.style.height = "100vh"
-//         for(let i=0; i<beams.length; i++) {
-//             beams[i].lightbeam.style.position = "relative"
-//             beams[i].lightbeam.style.top = 0
-//         }
-//     } else {
-//         menuState = true
-//         menuContainer.style.opacity = "1"
-//         menuContainer.style.display = ""
-//         lightsContainer.style.minHeight = "80vh"
-//         lightsContainer.style.height = "80vh"
-//     }
-// }
-
 function autoLights(values) {
     if(values[0] == 1) {
         onOffLasersButton.click();
@@ -709,8 +661,6 @@ function randomizeLights() {
     if(hasLasers) {
         var randNumLaserGroups = (Math.random() * maxNumLights/2).toFixed(0)
     }
-    // 
-
     if(lightType == "lightbeam") {
         var beam = new LightBeam(lightOrientation, lightNumber)
         beams.push(beam)
@@ -777,7 +727,6 @@ for (var i = 0; i < openManageLightButtons.length; i++) {
             manageLasersButton.removeAttribute("disabled")
         }
         manageLightBeamsButton.addEventListener("click", function() {
-            // Verifica Se Existem BEAMS E Ativa Apenas RadioButtons Das Suas Posiçoes
             radioButtons.forEach((radioButton) => {
                 radioButton.setAttribute("disabled", true)
                 radioButton.addEventListener("click", function() {
@@ -791,7 +740,6 @@ for (var i = 0; i < openManageLightButtons.length; i++) {
             })
         })
         manageLasersButton.addEventListener("click", function() {
-            // Verifica Se Existem LASERS E Ativa Apenas RadioButtons Das Suas Posiçoes
             radioButtons.forEach((radioButton) => {
                 radioButton.setAttribute("disabled", true)
                 radioButton.addEventListener("click", function() {
@@ -807,7 +755,6 @@ for (var i = 0; i < openManageLightButtons.length; i++) {
         $("#manageLightsModal").modal("show");
     })
 }
-
 
 document.getElementById("cancelAddLight").addEventListener("click", function() {
     $("#addLightModal").modal("hide");
@@ -889,6 +836,18 @@ function dragElement(elmnt) {
         // stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
+    }
+}
+
+window.addEventListener("resize", function() {
+    resetDraggableMenus()
+})
+
+function resetDraggableMenus() {
+    const draggableMenus = document.getElementsByClassName("draggableDiv")
+    for (let i = 0; i < draggableMenus.length; i++) {
+        draggableMenus[i].style.top = "0px";
+        draggableMenus[i].style.left = "0px";
     }
 }
 
