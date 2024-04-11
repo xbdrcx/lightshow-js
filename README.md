@@ -5,4 +5,4 @@
 
 Live @ https://xbdrcx.github.io/projects/lightshow-js/index.html
 
-Mobile version still pretty buggy 😣😣😣
+Mobile version still pretty buggy 
