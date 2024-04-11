@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LightShow 2</title>
+    <title>LightShow JS</title>
 </head>
 <body class="prevent-select no-drag">
     
@@ -18,18 +18,18 @@
     <div id="lights-menu" class="lights-menu">
 
         <div class="row title">
-            <h1 id="apptitle">LightShow 2</h1>
+            <h1 id="apptitle">Lightshow JS</h1>
         </div>
         <div class="row options">
             <div class="col-md-12">
                 <button name="menuButton" id="openAddLight" type="button" class="lightshowbtn btn btn-primary">
-                    ADD LIGHT
+                    Add Light
                 </button>
                 <button disabled name="menuButton" id="openManageLights" type="button" class="lightshowbtn btn btn-primary" style="margin-right: 20px;">
-                    MANAGE LIGHTS
+                    Manage Lights
                 </button>
                 <button name="menuButton" disabled class="btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
-                    SHOW MENUS
+                    Show Controls
                 </button>
 
                 <!-- Draggable Beam Control Menu -->
@@ -102,9 +102,9 @@
                 <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" id="playLights" type="button" class="btn btn-primary">
                     <img src="../icons/play-white.ico" width="24" height="24">
                 </button>
-                <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" id="recordLightsBtn" title="Import File (L)" class="btn btn-primary">
+                <!-- <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" id="recordLightsBtn" title="Import File (L)" class="btn btn-primary">
                     Record <i id="recordLightsColor" class="fas fa-circle" style="color: grey;"></i>
-                </button>
+                </button> -->
                 <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="Keyboard Commands" id="openCommands" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandsModal">
                     <img src="../icons/keyboard_white.ico" width="24" height="24">
                 </button>
@@ -133,7 +133,7 @@
 
                     <div class="row lightOptions">
                         <div class="row" style="margin-bottom: 20px;">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <button class="btn btn-primary" type="button" id="randomLights" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Randomize
                                 </button>
@@ -149,7 +149,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div>
@@ -317,10 +317,10 @@
             <div class="modal-content">
                 <div class="modal-body player-tips">
                     <hr>
-                    <h4 style="text-align: center;">About LightShow</h4>
+                    <h4 style="text-align: center;">About Ligthshow</h4>
                     <hr>
                     <p>Developed by <a href="https://www.github.com/xbdrcx" target="_blank">Bruno</a>, 
-                        LightShow JS 2.0 is a 2D party light-system simulator developed with Pure JavaScript, Bootstrap and much love for both tech and music.</p>
+                        Lightshow JS 2.1 is a 2D party light-system simulator developed with Pure JavaScript, Bootstrap and much love for both tech and music.</p>
                 </div>
             </div>
         </div>

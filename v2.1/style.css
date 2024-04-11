@@ -40,6 +40,29 @@ a:hover {
     text-decoration: underline;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: white;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 12px;
+}
+
+input[type="range"]:disabled {
+    opacity: 0.5;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #505050;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 12px;
+}
+
 .draggableDiv {
     position: absolute;
     z-index: 9;
@@ -48,6 +71,7 @@ a:hover {
     text-align: center;
     min-width: 120px;
     min-height: 120px;
+    opacity: 0.6;
 }
 .draggableDiv button {
     color: black !important;

@@ -1,4 +1,4 @@
-// Lightshow v2.0
+// Lightshow v2.1
 // Developed by Bruno Cruz
 // Github => https://www.github.com/xbdrcx
 
@@ -6,7 +6,7 @@
 var lightsMenusState = false
 var menuState = true
 var ligthsPlaying = false
-var isRecording = false
+// var isRecording = false
 var lights = false
 // Create Light Variables
 var lightTypeButtons = document.querySelectorAll("input[name='lightType']")
@@ -46,7 +46,7 @@ var lightElements = [lightsTop, lightsBottom, lightsLeft, lightsRight]
 const menuContainer = document.getElementById("lights-menu")
 const lightsContainer = document.getElementById("lights-container")
 // Buttons (General)
-const recordLightsButton = document.getElementById("recordLightsBtn")
+// const recordLightsButton = document.getElementById("recordLightsBtn")
 const autoLightsButton = document.getElementById("importbtn")
 const flashButton = document.getElementById("flashScreenBtn")
 const strobeScreenButton = document.getElementById("strobeScreenBtn")
@@ -323,30 +323,30 @@ document.body.onkeypress = function(e) {
     } 
 }
 
-recordLightsButton.addEventListener("click", function() {
-    if(isRecording) {
-        isRecording = false
-        document.getElementById("recordLightsColor").style.color = "grey"
-        // Code Stop Screen Recording Goes Here
-    } else {
-        isRecording = true
-        recordLights()
-    }
-})
+// recordLightsButton.addEventListener("click", function() {
+//     if(isRecording) {
+//         isRecording = false
+//         document.getElementById("recordLightsColor").style.color = "grey"
+//         // Code Stop Screen Recording Goes Here
+//     } else {
+//         isRecording = true
+//         recordLights()
+//     }
+// })
 
-function recordLights() {
-    let constraints = {
-        video: {
-            mediaSource: "screen"
-        }
-    };
-    navigator.mediaDevices.getUserMedia(constraints).then(mediaStream => {
-        document.getElementById("recordLightsColor").style.color = "red"
-        console.log("Recording")
-        console.log(mediaStream)
-        // Code Screen Recording Goes Here
-    });
-}
+// function recordLights() {
+//     let constraints = {
+//         video: {
+//             mediaSource: "screen"
+//         }
+//     };
+//     navigator.mediaDevices.getUserMedia(constraints).then(mediaStream => {
+//         document.getElementById("recordLightsColor").style.color = "red"
+//         console.log("Recording")
+//         console.log(mediaStream)
+//         // Code Screen Recording Goes Here
+//     });
+// }
 
 // On Flash Button Click
 flashButton.addEventListener("click", function(e) {
@@ -621,7 +621,7 @@ function activateButtons() {
     strobeLightsButton.removeAttribute("disabled")
     strobeScreenButton.removeAttribute("disabled")
     autoLightsButton.removeAttribute("disabled")
-    recordLightsButton.removeAttribute("disabled")
+    // recordLightsButton.removeAttribute("disabled")
     manageLightsButton.removeAttribute("disabled")
 }
 
@@ -630,7 +630,7 @@ function disabledButtons() {
     strobeLightsButton.setAttribute("disabled", true)
     strobeScreenButton.setAttribute("disabled", true)
     autoLightsButton.setAttribute("disabled", true)
-    recordLightsButton.setAttribute("disabled", true)
+    // recordLightsButton.setAttribute("disabled", true)
     manageLightsButton.setAttribute("disabled", true)
 }
 
@@ -794,11 +794,11 @@ showhidemenusButton.addEventListener("click", function() {
     if (lightsMenusState == true) {
         lightsMenusState = false
         $(".draggableDiv").fadeOut()
-        showhidemenusButton.innerHTML = "SHOW MENUS"
+        showhidemenusButton.innerHTML = "Show Controls"
     } else {
         lightsMenusState = true
         $(".draggableDiv").fadeIn()
-        showhidemenusButton.innerHTML = "HIDE MENUS"
+        showhidemenusButton.innerHTML = "Hide Controls"
     }
 })
 
