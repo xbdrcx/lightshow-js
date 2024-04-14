@@ -1,7 +1,7 @@
 # Lightshow JS
 2D Party Light-System Simulator
 
-*HTML/CSS, Bootstrap, Javascript, jQuery*
+Technologies: *HTML/CSS, Bootstrap, Javascript, jQuery*
 
 Live @ https://xbdrcx.github.io/projects/lightshow-js/index.html
 
