@@ -1,9 +1,11 @@
 # Lightshow JS
 2D Party Light-System Simulator
 
-Technologies: *HTML/CSS, Bootstrap, Javascript, jQuery*
+**Live** @ https://xbdrcx.github.io/projects/lightshow-js/index.html
 
-Live @ https://xbdrcx.github.io/projects/lightshow-js/index.html
+**Technologies:** *HTML/CSS, Bootstrap, Javascript, jQuery*
+
+**Versions:**
 
 v2.1.1 (First release, Current release)
 - Light Controls are now on Floating Menus
@@ -27,5 +29,5 @@ v1 (Never released)
 - Control Lights w/ On-Screen Buttons
 
 
-Notes:
+**Notes:**
 - Mobile version still pretty buggy 🙃🙃
