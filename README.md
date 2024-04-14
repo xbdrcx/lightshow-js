@@ -11,9 +11,8 @@ v2.1.1 (First release, Current release)
 - Major bugs fixed
 
 v2 (Never released)
-It's now possible to:
-- Add lights inside a layout, choose the position and what type of light goes there
-- Manage lights (delete light)
+- Add lights to layout, choose the position and what type of light goes there
+- Delete light(s) from layout
 - Choose Light Beam and Laser Beam Colors
 - Implemented AudioJudge's SpectrumRhythm funcionality into Lightshow, adding the ability to import an audio file and enable lights and effects to the rhythm of the audio
 
