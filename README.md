@@ -16,7 +16,7 @@ v2 (Never released)
 - Add lights to layout, choose the position and what type of light goes there
 - Delete light(s) from layout
 - Choose Light Beam and Laser Beam Colors
-- Implemented AudioJudge's SpectrumRhythm funcionality into Lightshow, adding the ability to import an audio file and enable lights and effects to the rhythm of the audio
+- Added ability to import an audio file which enables lights and effects to change to the rhythm of the audio
 
 v1 (Never released)
 - Laser Beams
