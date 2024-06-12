@@ -151,11 +151,11 @@ window.onload = function() {
                 playButtons[i].addEventListener("click", function() {
                     if(ligthsPlaying) {
                         ligthsPlaying = false
-                        playButtons[i].children[0].src = "../icons/play-white.ico"
+                        playButtons[i].children[0].src = "icons/play-white.ico"
                         player.pause();
                     } else {
                         ligthsPlaying = true
-                        playButtons[i].children[0].src = "../icons/pause-white.ico"
+                        playButtons[i].children[0].src = "icons/pause-white.ico"
                         player.play();
                         renderFrame();
                     }
@@ -166,7 +166,7 @@ window.onload = function() {
             player.addEventListener("ended", function() {
                 ligthsPlaying = false
                 for (let i=0; i < playButtons.length; i++) {
-                    playButtons[i].children[0].src = "../icons/play-white.ico"
+                    playButtons[i].children[0].src = "icons/play-white.ico"
                 }
                 if(!menuState) {
                     menuState = true
