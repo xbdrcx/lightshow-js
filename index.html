@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="./icons/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./bootstrap5.3.1.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="./bootstrap5.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightShow JS</title>
+</head>
+<body class="prevent-select no-drag">
+    
+    <div class="splash">
+        <img src="./icons/splash.png" class="splash-header center" width="24" height="24">
+    </div>
+
+    <div id="lights-menu" class="lights-menu">
+
+                <video id="player" style="display: none;"></video>
+
+                <!-- Draggable Beam Control Menu -->
+                <div id="beamMenu" class="draggableDiv" style="display: none;">
+                    <div id="beamMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
+                    <button id="beamsOnOffBtn" type="button" class="lightshowbtn btn btn-primary">
+                        BEAMS ON <i id="beamsStateColor" class="fas fa-square" style="color: green;"></i>
+                    </button>
+                    <br>
+                    <button onclick="beamMotion()" id="beamMotionBtn" type="button" class="lightshowbtn btn btn-primary">
+                        BEAM MOTION
+                    </button>
+                    <br>
+                    <button id="beamStrobeBtn" type="button" class="lightshowbtn btn btn-primary" onclick="strobeBeams()">
+                        BEAM STROBE
+                    </button>
+                    <br>
+                    <label for="beamColor">Color</label>
+                    <input type="color" id="beamColor" name="beamColor">
+                    <br>
+                    <label for="beamSpeedRange" style="color: black;">Speed</label>
+                    <input value="10" type="range" id="beamSpeedRange" name="beamSpeedRange" min="1" max="8"/>
+                    <br>
+                    <label for="beamIntensity" style="color: black;">Intensity</label>
+                    <input value="6" type="range" id="beamIntensity" name="beamIntensity" min="0" max="8"/>
+                </div>
+
+                <!-- Draggable Laser Control Menu -->
+                <div id="laserMenu" class="draggableDiv" style="display: none;">
+                    <div id="laserMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
+                    <button id="laserOnOffBtn" type="button" class="lightshowbtn btn btn-primary">
+                        LASERS OFF <i id="lasersStateColor" class="fas fa-square" style="color: green;"></i>
+                    </button>
+                    <br>
+                    <button id="moveLasersBtn" onclick="moveLasers()" type="button" class="lightshowbtn btn btn-primary">
+                        MOVE LASERS
+                    </button>
+                    <br>
+                    <label for="laserColor">Color</label>
+                    <input type="color" id="laserColor" name="laserColor">
+                    <br>
+                    <label for="laserSpeed" style="color: black;">Speed</label>
+                    <input value="150" type="range" id="laserSpeed" name="laserSpeed" min="50" max="500" oninput="laserSpeed(this.value)"/>
+                    <br>
+                    <label for="laserIntensity" style="color: black;">Intensity</label>
+                    <input value="10" type="range" id="laserIntensity" name="laserIntensity" min="0" max="10" oninput="laserOpacity(this.value)"/>
+                </div>
+
+                <!-- Draggable Lights Control Menu -->
+                <div id="lightsMenu" class="draggableDiv" style="display: none;">
+                    <div id="lightsMenuHeader" class="draggableDivHeader"><img src="./icons/drag.ico"></div>
+                    <button name="menuButton" disabled id="flashScreenBtn" type="button" class="lightshowbtn btn btn-primary">
+                        FLASH
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled id="strobeScreenBtn" type="button" class="lightshowbtn btn btn-primary" onclick="strobeScreen()">
+                        STROBE SCREEN
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled style="margin-right: 20px;" id="strobeLightsBtn" type="button" class="lightshowbtn btn btn-primary" onclick="strobeLights()">
+                        STROBE LIGHTS
+                    </button>
+                </div>
+
+        <div class="row title">
+            <h1 id="apptitle">Lightshow JS</h1>
+            <div class="dropdown" id="mobileMenu">
+                <button class="dropbtn"><img src="./icons/menuicon.png"></button>
+                <div class="dropdown-content">
+                    <button name="menuButton" id="openAddLight" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
+                        Add Light
+                    </button>
+                    <br>
+                    <button disabled name="menuButton" id="openManageLights" type="button" class="manageLightBtn lightshowbtn btn btn-primary">
+                        Manage Lights
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled class="showhideControlsBtn btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
+                        Show Controls
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled data-toggle="tooltip" data-bs-placement="bottom" id="importbtn" title="Import File (L)" class="autolightsBtn btn btn-primary">
+                        AutoLights
+                        <input type="file" value="upload" id="fileimporter" class="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
+                    </button>
+                    <br>
+                    <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
+                        <img src="./icons/play-white.ico" width="24" height="24">
+                    </button>
+                    <br>
+                    <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+                        <img src="./icons/info.png" width="24" height="24">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row options">
+            <div class="col-md-12">
+                <button name="menuButton" type="button" class="popup openLightBtn lightshowbtn btn btn-primary">
+                    Add Light
+                </button>
+                <button disabled name="menuButton" id="openManageLights" type="button" class="manageLightBtn lightshowbtn btn btn-primary">
+                    Manage Lights
+                </button>
+                <button name="menuButton" disabled class="showhideControlsBtn btn btn-primary" href="#" role="button" id="showhideMenusBtn"> 
+                    Show Controls
+                </button>
+                <button name="menuButton" disabled data-toggle="tooltip" data-bs-placement="bottom" id="importbtn" title="Import File (L)" class="autolightsBtn btn btn-primary">
+                    AutoLights
+                    <input type="file" value="upload" id="fileimporter" class="fileimporter" accept="video/*, audio/*" style="padding: 10px; display: none;">
+                </button>
+                <button name="menuButton" disabled style="margin-right: 20px;" data-toggle="tooltip" data-bs-placement="bottom" title="" type="button" class="playBtn btn btn-primary">
+                    <img src="./icons/play-white.ico" width="24" height="24">
+                </button>
+                <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="Keyboard Commands" id="openCommands" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandsModal">
+                    <img src="./icons/keyboard_white.ico" width="24" height="24">
+                </button>
+                <button name="menuButton" data-toggle="tooltip" data-bs-placement="bottom" title="About LightShow JS" id="openAbout" type="button" class="openAboutBtn btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+                    <img src="./icons/info_white.ico" width="24" height="24">
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="lights-container" id="lights-container">
+    </div>
+
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <!-- ADD LIGHT MODAL -->
+    <div class="modal fade" id="addLightModal" tabindex="-1" role="dialog" aria-labelledby="addLightModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <hr>
+                    <h4 style="text-align: center;">Add Light</h4>
+                    <hr>
+
+                    <div class="row lightOptions">
+                        <div class="row">
+                            <div>
+                                <input value="lightbeam" class="form-check-input" type="radio" name="lightType">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Light Beam
+                                </label>
+                                <input value="lasers" class="form-check-input" type="radio" name="lightType">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Lasers
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lightPositionLayout">
+
+                        <div class="horizontal">
+                            <input disabled id="top-0" value="top-0" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-1"  value="top-1" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-2"  value="top-2" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-3"  value="top-3" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-4" value="top-4" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-5" value="top-5" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="top-6" value="top-6" class="form-check-input" type="checkbox" name="lightPosition">
+                        </div>
+                        <div class="left">
+                            <input disabled id="left-0" value="left-0" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="left-1"  value="left-1" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="left-2" value="left-2" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="left-3" value="left-3" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="left-4" value="left-4" class="form-check-input" type="checkbox" name="lightPosition">
+                        </div>
+                        <div class="horizontal-bottom">
+                            <input disabled id="bottom-0" value="bottom-0" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-1"  value="bottom-1" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-2"  value="bottom-2" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-3"  value="bottom-3" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-4" value="bottom-4" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-5" value="bottom-5" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="bottom-6" value="bottom-6" class="form-check-input" type="checkbox" name="lightPosition">
+                        </div>
+                        <div class="right">
+                            <input disabled id="right-0" value="right-0" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="right-1"  value="right-1" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="right-2" value="right-2" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="right-3" value="right-3" class="form-check-input" type="checkbox" name="lightPosition">
+                            <input disabled id="right-4" value="right-4" class="form-check-input" type="checkbox" name="lightPosition">
+                        </div>
+
+                    </div>
+
+                    <div class="lightElementButtons">
+                        <button disabled onclick="addLightElement()" id="addLightBtn" class="lightshowbtn btn btn-primary">Confirm</button>
+                        <button id="cancelAddLight" class="lightshowbtn btn btn-primary">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MANAGE LIGHT MODAL -->
+    <div class="modal fade" id="manageLightsModal" tabindex="-1" role="dialog" aria-labelledby="manageLightsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <hr>
+                    <h4 style="text-align: center;">Manage Lights</h4>
+                    <hr>
+
+                    <div class="row lightOptions">    
+                        <div class="row">
+                            <div>
+                                <input disabled id="manageLightBeams" value="lightbeam" class="form-check-input" type="radio" name="manageLightType">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Light Beams
+                                </label>
+                                <input disabled id="manageLasers" value="lasers" class="form-check-input" type="radio" name="manageLightType">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Lasers
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lightPositionLayout">
+
+                        <div class="horizontal">
+                            <input disabled id="top-0" value="top-0" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-1" value="top-1" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-2" value="top-2" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-3" value="top-3" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-4" value="top-4" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-5" value="top-5" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="top-6" value="top-6" class="form-check-input" type="radio" name="manageLightPosition">
+                        </div>
+                        <div class="left">
+                            <input disabled id="left-0" value="left-0" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="left-1" value="left-1" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="left-2" value="left-2" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="left-3" value="left-3" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="left-4" value="left-4" class="form-check-input" type="radio" name="manageLightPosition">
+                        </div>
+                        <div class="horizontal-bottom">
+                            <input disabled id="bottom-0" value="bottom-0" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-1" value="bottom-1" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-2" value="bottom-2" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-3" value="bottom-3" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-4" value="bottom-4" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-5" value="bottom-5" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="bottom-6" value="bottom-6" class="form-check-input" type="radio" name="manageLightPosition">
+                        </div>
+                        <div class="right">
+                            <input disabled id="right-0" value="right-0" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="right-1" value="right-1" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="right-2" value="right-2" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="right-3" value="right-3" class="form-check-input" type="radio" name="manageLightPosition">
+                            <input disabled id="right-4" value="right-4" class="form-check-input" type="radio" name="manageLightPosition">
+                        </div>
+
+                    </div>
+
+                    <div class="row lightOptions">    
+                        <div class="row">
+                            <div>
+                                <button disabled onclick="removeLight()" id="removeLightBtn" class="lightshowbtn btn btn-primary">
+                                    Remove light
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lightElementButtons">
+                        <button id="closeManageLights" class="lightshowbtn btn btn-primary">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WARNING Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body player-tips">
+                    <hr>
+                    <h4 style="text-align: center;">WARNING</h4>
+                    <hr>
+                    <p style="text-align: center;">Caution. This application contains <b>Flashing Lights</b>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body player-tips" style="text-align: center;">
+                    <hr>
+                    <h4 style="text-align: center;">About Ligthshow</h4>
+                    <hr>
+                    <p>Lightshow JS is a 2D party light-system simulator developed with Javascript, Bootstrap and CSS</p>
+                    <p>Developed by <a href="https://www.github.com/xbdrcx" target="_blank">Bruno Cruz</a></p>
+                    <p>Version 2.1.1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard Commands Modal -->
+    <div style="text-align: center;" class="modal fade" id="commandsModal" tabindex="-1" role="dialog" aria-labelledby="commandsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body player-tips">
+                    <hr>
+                    <h4>Keyboard Bindings</h4>
+                    <hr>
+                    <p><span>Z</span> - Flash Screen</p>
+                    <p><span>X</span> - ON/OFF All Lighting Strobe</p>
+                    <p><span>N</span> - SHOW/HIDE Light Controls</p>
+                    <hr>
+                    <h4>Light Beams</h4>
+                    <hr>
+                    <p><span>Q</span> - ON/OFF Beams</p>
+                    <p><span>Y</span> - ON/OFF Beam Movement</p>
+                    <hr>
+                    <h4>Lasers</h4>
+                    <hr>
+                    <p><span>A</span> - ON/OFF Lasers</p>
+                    <p><span>H</span> - ON/OFF Lasers Movements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="./jquery-3.7.1.js"></script>
+<script src="./bootstrap5.3.1.min.js"></script>
+<script src="audiojudge.js"></script>
+<script src="lightshow.js"></script>
